@@ -1,0 +1,4 @@
+#!/bin/bash
+
+javac src/*.java -d objects
+jar cfe FishMe.jar fishing -C objects/ .
