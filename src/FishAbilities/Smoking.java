@@ -1,4 +1,4 @@
-public class FishAbilitySmoking extends FishAbility {
+public class Smoking extends FishAbility {
 
 	protected void setup() {
 		this.name = "smoking";
