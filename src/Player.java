@@ -3,6 +3,8 @@
  */
 public class Player
 {
+    private static final int EXPERIENCE_PER_LEVEL = 50;
+    private static final int MAX_LEVEL = 20;
 
     /**
      * The amount of experience the player has gained
@@ -28,8 +30,10 @@ public class Player
     public void addExperience(int experience)
     {
         this.experience += experience;
-        // @TODO These should be constants
-        if(this.experience >= (level * 50) && level < 20) {
+        if(
+            this.experience >= (level * EXPERIENCE_PER_LEVEL) &&
+            level < MAX_LEVEL
+        ) {
             level++;
             System.out.println("\n*****You have leveled up*****");
             System.out.println("Current level: " + level + "\n");

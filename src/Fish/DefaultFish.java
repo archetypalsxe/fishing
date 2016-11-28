@@ -5,8 +5,11 @@ import java.util.Random;
 
 /**
  * Used to represent the fish itself
+ *
+ * @TODO Rather than having fish abilities..... we should have specific types
+ * of fish
  */
-public class Fish {
+public class DefaultFish extends AbstractFish {
 
     /**
      * The size of the fish
@@ -34,19 +37,14 @@ public class Fish {
     protected int time;
 
     /**
-     * The ability the fish has, if the fish has one
-     */
-    protected FishAbility ability;
-
-    /**
      * Constructor for fish class. The player's level is taken as a parameter
      */
-    public Fish(int level)
+    public DefaultFish(int playerLevel)
     {
         Random generator = new Random();
         // @TODO Should use constants....
-        if(level < 20) {
-            size = generator.nextInt(20 - level) / (double) (20 - level);
+        if(playerLevel < 20) {
+            size = generator.nextInt(20 - playerLevel) / (double) (20 - playerLevel);
             time = generator.nextInt(10000);
         } else {
             size = 0;
@@ -62,27 +60,6 @@ public class Fish {
             experience = 20;
             name = "a huge fish";
         }
-        if(generator.nextInt(10) >= 7) {
-            int abilityNum = generator.nextInt(3);
-            switch(abilityNum) {
-                case 0:
-                    this.ability = new Diseased();
-                    break;
-                case 1:
-                    this.ability = new Holy();
-                    break;
-                case 2:
-                    this.ability = new Smoking();
-                    break;
-                default: /* This should theoritically never happen */
-                    break;
-            }
-        }
-
-        if(this.ability instanceof FishAbility) {
-            System.out.println(this.ability.getName());
-        }
-
     }
 
     /**

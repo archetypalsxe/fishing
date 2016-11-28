@@ -22,9 +22,10 @@ public class GameController
      */
     protected void mainLoop()
     {
+        FishFactory fishFactory = new FishFactory();
         while(true)
         {
-            Fish fish = new Fish(player.getLevel());
+            AbstractFish fish = fishFactory.generateFish(player.getLevel());
             fish(fish);
         }
     }
@@ -33,7 +34,7 @@ public class GameController
      * This is where we do the fishing. This is where the system sleeps
      * while we are "fishing"
      */
-    protected void fish(Fish fish)
+    protected void fish(AbstractFish fish)
     {
         System.out.println("Fishing...");
 
@@ -48,7 +49,15 @@ public class GameController
 
         System.out.print("Caught "+fish.getName()+"! ");
 
-        System.out.println(fish.getExperience() + " experience gained!\n");
+        String direction;
+        if(fish.getExperience() >= 0) {
+            direction = "gained";
+        } else {
+            direction = "lost!!!";
+        }
+        System.out.println(
+            Math.abs(fish.getExperience()) + " experience " + direction + "\n"
+        );
         player.addExperience(fish.getExperience());
     }
 }
