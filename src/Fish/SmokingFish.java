@@ -1,32 +1,25 @@
 /**
  * A fish that is smoking... I guess this could mean it's either smoking a
  * cigarette or on fire...?
- *
- * @TODO Add some sort of randomness to these
  */
 public class SmokingFish extends AbstractFish {
 
     /**
-     * Returns the time required to catch the fish
+     * Constructor for the smoking fish
      */
-    public int getTime()
+    public SmokingFish (int playerLevel)
     {
-        return 8000;
+        super(playerLevel);
     }
 
     /**
-     * Returns the name of the fish to be displayed
+     * Set up a smoking fish. Called from constructor
      */
-    public String getName()
+    public void setup (int playerLevel)
     {
-        return "SMOKING FISH";
-    }
-
-    /**
-     * Returns the experience that is obtained when this fish is caught
-     */
-    public int getExperience()
-    {
-        return -10;
+        float weight = this.calculateWeight(playerLevel);
+        this.name = "SMOKING FISH";
+        this.time = (int)(8000 * weight);
+        this.experience = (int)(-10 * weight);
     }
 }

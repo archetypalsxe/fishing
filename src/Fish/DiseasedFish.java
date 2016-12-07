@@ -1,32 +1,25 @@
 /**
  * A fish that is diseased. Just getting it out of the water has deterimental
  * effects to you
- *
- * @TODO Add some sort of randomness to these
  */
 public class DiseasedFish extends AbstractFish {
 
     /**
-     * Returns the time required to catch the fish
+     * Constructor that calls the parent constructor
      */
-    public int getTime()
+    public DiseasedFish(int playerLevel)
     {
-        return 2000;
+        super(playerLevel);
     }
 
     /**
-     * Returns the name of the fish to be displayed
+     * Sets up the diseased fish
      */
-    public String getName()
+    public void setup(int playerLevel)
     {
-        return "DISEASED FISH";
-    }
-
-    /**
-     * Returns the experience that is obtained when this fish is caught
-     */
-    public int getExperience()
-    {
-        return -50;
+        float weight = this.calculateWeight(playerLevel);
+        this.time = (int)(2000 * weight);
+        this.experience = (int)(-50 * weight);
+        this.name = "DISEASED FISH";
     }
 }

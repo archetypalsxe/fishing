@@ -1,31 +1,25 @@
 /**
  * A fish that has been blessed by the creator
- *
- * @TODO Add some sort of randomness to these
  */
 public class HolyFish extends AbstractFish {
 
     /**
-     * Returns the time required to catch the fish
+     * Constructor that calls the parent constructor
      */
-    public int getTime()
+    public HolyFish (int playerLevel)
     {
-        return 16000;
+        super(playerLevel);
     }
 
     /**
-     * Returns the name of the fish to be displayed
+     * Set up the holy fish
      */
-    public String getName()
+    public void setup (int playerLevel)
     {
-        return "HOLY FISH";
+        float weight = this.calculateWeight(playerLevel);
+        this.name = "HOLY FISH";
+        this.time = (int)(16000 * weight);
+        this.experience = (int)(50 * weight);
     }
 
-    /**
-     * Returns the experience that is obtained when this fish is caught
-     */
-    public int getExperience()
-    {
-        return 50;
-    }
 }

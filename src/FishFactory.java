@@ -32,11 +32,11 @@ public class FishFactory
         int fishTypeInt = this.randomGenerator.nextInt(10);
         switch (fishTypeInt) {
             case 0:
-                return new HolyFish();
+                return new HolyFish(playerLevel);
             case 1:
-                return new DiseasedFish();
+                return new DiseasedFish(playerLevel);
             case 2:
-                return new SmokingFish();
+                return new SmokingFish(playerLevel);
             default:
                 return new DefaultFish(playerLevel);
         }

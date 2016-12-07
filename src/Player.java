@@ -3,8 +3,8 @@
  */
 public class Player
 {
+    public static final int MAX_LEVEL = 20;
     private static final int EXPERIENCE_PER_LEVEL = 50;
-    private static final int MAX_LEVEL = 20;
 
     /**
      * The amount of experience the player has gained
