@@ -39,4 +39,12 @@ public class Player
             System.out.println("Current level: " + level + "\n");
         }
     }
+
+    /**
+     * Returns the player's current experience
+     */
+    public int getExperience()
+    {
+        return this.experience;
+    }
 }

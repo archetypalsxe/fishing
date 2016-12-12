@@ -34,10 +34,9 @@ public abstract class AbstractFish {
     protected boolean upperCaseName;
 
     /**
-     * Returns the maximum amount of time that could be required to catch
-     * this fish
+     * Returns whether or not the name should be in all caps
      */
-    protected abstract int getMaxTime();
+    protected abstract boolean isNameAllCaps();
 
     /**
      * Returns the maximum amount of experience that could be gained
@@ -46,9 +45,15 @@ public abstract class AbstractFish {
     protected abstract int getMaxExperience();
 
     /**
-     * Generate the fish's name. Takes in the weight of the fish
+     * Returns the maximum amount of time that could be required to catch
+     * this fish
      */
-    protected abstract String generateName(float weight);
+    protected abstract int getMaxTime();
+
+    /**
+     * Returns the name of the fish
+     */
+    protected abstract String getType();
 
     /**
      * The default constructor which calls the setup with the provided
@@ -94,7 +99,16 @@ public abstract class AbstractFish {
     protected float calculateWeight (int playerLevel)
     {
         int levelsToGo = (Player.MAX_LEVEL + 1) - playerLevel;
-        return this.generator.nextInt(levelsToGo) / (float) levelsToGo;
+        return
+            (this.generator.nextInt(levelsToGo) + 1)  / (float) levelsToGo;
+    }
+
+    /**
+     * Generate the fish's name. Takes in the weight of the fish
+     */
+    protected String generateName(float weight)
+    {
+        return this.generateSize(weight) +" "+ this.getType();
     }
 
     /**
@@ -102,14 +116,21 @@ public abstract class AbstractFish {
      */
     protected String generateSize (float weight)
     {
-        if (weight > 80) {
-            return "large";
+        String size;
+
+        if (weight > .8) {
+            size = "large";
+        } else if (weight > .5) {
+            size = "medium";
+        } else {
+            size = "small";
         }
 
-        if (weight > 50) {
-            return "medium";
+
+        if(this.isNameAllCaps()) {
+            size = size.toUpperCase();
         }
 
-        return "small";
+        return size;
     }
 }

@@ -5,21 +5,19 @@
 public class SmokingFish extends AbstractFish {
 
     /**
-     * The name of this fish
-     */
-    protected String name = "SMOKING FISH";
-
-    /**
-     * Whether or not the fish's name is in upper case or not
-     */
-    protected boolean upperCaseName = true;
-
-    /**
      * Constructor for the smoking fish
      */
     public SmokingFish (int playerLevel)
     {
         super(playerLevel);
+    }
+
+    /**
+     * Returns whether or not the name should be in all caps
+     */
+    protected boolean isNameAllCaps()
+    {
+        return true;
     }
 
     /**
@@ -41,10 +39,10 @@ public class SmokingFish extends AbstractFish {
     }
 
     /**
-     * Generate the fish's name. Takes in the weight of the fish
+     * Returns the name of the fish
      */
-    protected String generateName(float weight)
+    protected String getType()
     {
-        return this.generateSize() +" "+ this.name;
+        return "SMOKING FISH";
     }
 }

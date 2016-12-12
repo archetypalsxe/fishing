@@ -47,7 +47,7 @@ public class GameController
             System.out.println("An exception was thrown: "+ie+"\n");
         }
 
-        System.out.print("Caught "+fish.getName()+"! ");
+        System.out.print("Caught a "+fish.getName()+"! ");
 
         String direction;
         if(fish.getExperience() >= 0) {
@@ -56,8 +56,9 @@ public class GameController
             direction = "lost!!!";
         }
         System.out.println(
-            Math.abs(fish.getExperience()) + " experience " + direction + "\n"
+            Math.abs(fish.getExperience()) + " experience " + direction
         );
         player.addExperience(fish.getExperience());
+        System.out.println("New Experience: " + player.getExperience() + "\n");
     }
 }

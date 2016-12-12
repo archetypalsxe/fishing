@@ -5,20 +5,19 @@
 public class DiseasedFish extends AbstractFish {
 
     /**
-     * The name of this fish
-     */
-    protected String name = "DISEASED FISH";
-
-    /**
-     * Whether or not the fish's name is in upper case or not */
-    protected boolean upperCaseName = true;
-
-    /**
      * Constructor that calls the parent constructor
      */
     public DiseasedFish(int playerLevel)
     {
         super(playerLevel);
+    }
+
+    /**
+     * Returns whether or not the name should be in all caps
+     */
+    protected boolean isNameAllCaps()
+    {
+        return true;
     }
 
     /**
@@ -40,10 +39,10 @@ public class DiseasedFish extends AbstractFish {
     }
 
     /**
-     * Generate the fish's name. Takes in the weight of the fish
+     * Returns the name of the fish
      */
-    protected String generateName(float weight)
+    protected String getType()
     {
-        return this.generateSize() +" "+ this.name;
+        return "DISEASED FISH";
     }
 }
