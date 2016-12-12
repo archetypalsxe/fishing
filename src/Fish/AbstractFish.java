@@ -9,16 +9,6 @@ import java.util.Random;
 public abstract class AbstractFish {
 
     /**
-     * Called during the constructor to setup the randomness in the fish
-     */
-    protected abstract void setup(int playerLevel);
-
-    /**
-     * The size of the fish
-     */
-    protected double size;
-
-    /**
      * The experience points gained by catching this fish
      */
     protected int experience;
@@ -39,21 +29,38 @@ public abstract class AbstractFish {
     protected String name;
 
     /**
+     * Whether or not the fish's name is in upper case or not
+     */
+    protected boolean upperCaseName;
+
+    /**
+     * Returns the maximum amount of time that could be required to catch
+     * this fish
+     */
+    protected abstract int getMaxTime();
+
+    /**
+     * Returns the maximum amount of experience that could be gained
+     * from this fish
+     */
+    protected abstract int getMaxExperience();
+
+    /**
+     * Generate the fish's name. Takes in the weight of the fish
+     */
+    protected abstract String generateName(float weight);
+
+    /**
      * The default constructor which calls the setup with the provided
      * player's level
      */
     public AbstractFish (int playerLevel)
     {
         this.generator = new Random();
-        this.setup(playerLevel);
-    }
-
-    /**
-     * Returns the size of the fish
-     */
-    public double getSize()
-    {
-        return size;
+        float weight = this.calculateWeight(playerLevel);
+        this.time = (int)(this.getMaxTime() * weight);
+        this.experience = (int)(this.getMaxExperience() * weight);
+        this.name = this.generateName(weight);
     }
 
     /**
@@ -61,7 +68,7 @@ public abstract class AbstractFish {
      */
     public int getExperience()
     {
-        return experience;
+        return this.experience;
     }
 
     /**
@@ -69,7 +76,7 @@ public abstract class AbstractFish {
      */
     public int getTime()
     {
-        return time;
+        return this.time;
     }
 
     /**
@@ -77,7 +84,7 @@ public abstract class AbstractFish {
      */
     public String getName()
     {
-        return name;
+        return this.name;
     }
 
     /**
@@ -86,7 +93,23 @@ public abstract class AbstractFish {
      */
     protected float calculateWeight (int playerLevel)
     {
-        int levelsToGo = Player.MAX_LEVEL - playerLevel;
+        int levelsToGo = (Player.MAX_LEVEL + 1) - playerLevel;
         return this.generator.nextInt(levelsToGo) / (float) levelsToGo;
+    }
+
+    /**
+     * Generate the size of the fish, whether it is small/medium/large
+     */
+    protected String generateSize (float weight)
+    {
+        if (weight > 80) {
+            return "large";
+        }
+
+        if (weight > 50) {
+            return "medium";
+        }
+
+        return "small";
     }
 }

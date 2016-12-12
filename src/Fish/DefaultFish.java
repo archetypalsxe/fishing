@@ -4,6 +4,16 @@
 public class DefaultFish extends AbstractFish {
 
     /**
+     * The name of this fish
+     */
+    protected String name = "fish";
+
+    /**
+     * Whether or not the fish's name is in upper case or not
+     */
+    protected boolean upperCaseName = false;
+
+    /**
      * Constructor that calls the parent constructor
      */
     public DefaultFish (int playerLevel)
@@ -12,28 +22,28 @@ public class DefaultFish extends AbstractFish {
     }
 
     /**
-     * Setup function. The player's level is taken as a parameter
+     * Returns the maximum amount of time that could be required to catch
+     * this fish
      */
-    public void setup (int playerLevel)
+    protected int getMaxTime()
     {
-        if(playerLevel < Player.MAX_LEVEL) {
-            size = this.generator.nextInt(
-                Player.MAX_LEVEL - playerLevel
-            ) / (double) (Player.MAX_LEVEL - playerLevel);
-            time = this.generator.nextInt(10000);
-        } else {
-            size = 0;
-            time = 10000;
-        }
-        if(size < 0.65) {
-            experience = 5;
-            name = "a fish";
-        } else if(size < 0.9) {
-            experience = 10;
-            name = "a big fish";
-        } else {
-            experience = 20;
-            name = "a huge fish";
-        }
+        return 10000;
+    }
+
+    /**
+     * Returns the maximum amount of experience that could be gained
+     * from this fish
+     */
+    protected int getMaxExperience()
+    {
+        return 20;
+    }
+
+    /**
+     * Generate the fish's name. Takes in the weight of the fish
+     */
+    protected String generateName(float weight)
+    {
+        return this.generateSize() +" "+ this.name;
     }
 }

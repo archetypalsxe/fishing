@@ -1,11 +1,6 @@
-Clean up repo
-    Add more randomness to the non-default fish and stuff
-    TODO's
-Different Modifiers
-	Different fish give different stats
-		diseased
-		holy
-		smoking
+Make default fish calculated like non-default fish
+    Is not compiling currently
+Sizes for non default fish
 Make interactive
     Have to press key at certain time
         Type word fast enough?

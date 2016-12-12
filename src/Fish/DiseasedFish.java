@@ -5,6 +5,15 @@
 public class DiseasedFish extends AbstractFish {
 
     /**
+     * The name of this fish
+     */
+    protected String name = "DISEASED FISH";
+
+    /**
+     * Whether or not the fish's name is in upper case or not */
+    protected boolean upperCaseName = true;
+
+    /**
      * Constructor that calls the parent constructor
      */
     public DiseasedFish(int playerLevel)
@@ -13,13 +22,28 @@ public class DiseasedFish extends AbstractFish {
     }
 
     /**
-     * Sets up the diseased fish
+     * Returns the maximum amount of time that could be required to catch
+     * this fish
      */
-    public void setup(int playerLevel)
+    protected int getMaxTime()
     {
-        float weight = this.calculateWeight(playerLevel);
-        this.time = (int)(2000 * weight);
-        this.experience = (int)(-50 * weight);
-        this.name = "DISEASED FISH";
+        return 2000;
+    }
+
+    /**
+     * Returns the maximum amount of experience that could be gained
+     * from this fish
+     */
+    protected int getMaxExperience()
+    {
+        return -50;
+    }
+
+    /**
+     * Generate the fish's name. Takes in the weight of the fish
+     */
+    protected String generateName(float weight)
+    {
+        return this.generateSize() +" "+ this.name;
     }
 }

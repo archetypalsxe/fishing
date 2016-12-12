@@ -24,8 +24,6 @@ public class FishFactory
 
     /**
      * Generate a fish using the provided player's level
-     *
-     * @TODO More randomness and actually use the player's level in some way
      */
     public AbstractFish generateFish(int playerLevel)
     {

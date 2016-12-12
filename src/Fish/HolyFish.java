@@ -4,6 +4,16 @@
 public class HolyFish extends AbstractFish {
 
     /**
+     * The name of this fish
+     */
+    protected String name = "HOLY FISH";
+
+    /**
+     * Whether or not the fish's name is in upper case or not
+     */
+    protected boolean upperCaseName = true;
+
+    /**
      * Constructor that calls the parent constructor
      */
     public HolyFish (int playerLevel)
@@ -12,14 +22,28 @@ public class HolyFish extends AbstractFish {
     }
 
     /**
-     * Set up the holy fish
+     * Returns the maximum amount of time that could be required to catch
+     * this fish
      */
-    public void setup (int playerLevel)
+    protected  int getMaxTime()
     {
-        float weight = this.calculateWeight(playerLevel);
-        this.name = "HOLY FISH";
-        this.time = (int)(16000 * weight);
-        this.experience = (int)(50 * weight);
+        return 16000;
     }
 
+    /**
+     * Returns the maximum amount of experience that could be gained
+     * from this fish
+     */
+    protected  int getMaxExperience()
+    {
+        return 50;
+    }
+
+    /**
+     * Generate the fish's name. Takes in the weight of the fish
+     */
+    protected String generateName(float weight)
+    {
+        return this.generateSize() +" "+ this.name;
+    }
 }
