@@ -29,6 +29,11 @@ public abstract class AbstractFish {
     protected String name;
 
     /**
+     * The speed the fish is moving at
+     */
+    protected double speed;
+
+    /**
      * Whether or not the fish's name is in upper case or not
      */
     protected boolean upperCaseName;
@@ -43,6 +48,12 @@ public abstract class AbstractFish {
      * from this fish
      */
     protected abstract int getMaxExperience();
+
+    /**
+     * Returns the maximum speed that the fish can move. A 1 is the fastest
+     * possible, and 2 would be twice as slow
+     */
+    protected abstract double getMaxSpeed();
 
     /**
      * Returns the maximum amount of time that could be required to catch
@@ -65,6 +76,7 @@ public abstract class AbstractFish {
         float weight = this.calculateWeight(playerLevel);
         this.time = (int)(this.getMaxTime() * weight);
         this.experience = (int)(this.getMaxExperience() * weight);
+        this.speed = (double)(this.getMaxSpeed() + (1 - weight));
         this.name = this.generateName(weight);
     }
 
@@ -82,6 +94,14 @@ public abstract class AbstractFish {
     public int getTime()
     {
         return this.time;
+    }
+
+    /**
+     * Returns the multiplier that the fish is moving at
+     */
+    public double getSpeed()
+    {
+        return this.speed;
     }
 
     /**

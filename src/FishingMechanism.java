@@ -6,7 +6,7 @@
 public class FishingMechanism implements Runnable
 {
     private static final int NUMBER_OF_SPACES = 50;
-    private static final int SLEEP_TIME = 100;
+    private static final int SLEEP_TIME = 20;
 
     /**
      * Whether the position is advancing or not
@@ -27,6 +27,20 @@ public class FishingMechanism implements Runnable
      * The thread that is running
      */
     protected Thread thread;
+
+    /**
+     * How long to wait before moving mechanism
+     */
+    protected long speed;
+
+    /**
+     * Default constructor. Takes in a speed multiplier that the speed
+     * the fish moves at should be multiplied by
+     */
+    public FishingMechanism(double speedMultiplier)
+    {
+        this.speed = (long)(speedMultiplier * SLEEP_TIME);
+    }
 
     /**
      * Start the thread running
@@ -50,7 +64,7 @@ public class FishingMechanism implements Runnable
             while (this.running) {
                 this.clearInterface();
                 this.displayInterface();
-                Thread.sleep(SLEEP_TIME);
+                Thread.sleep(this.speed);
                 this.setNextPosition();
             }
         } catch (InterruptedException e) {

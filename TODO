@@ -1,6 +1,5 @@
 Make interactive
     Make line that goes back and forth along the screen
-        Make speed based on difficulty of fish
         Create inner boundaries for when the key has to be pressed
     Have to press key at certain time
         Type a combination of keys within a certain time frame

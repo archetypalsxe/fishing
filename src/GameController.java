@@ -40,7 +40,9 @@ public class GameController
 
         try
         {
-            FishingMechanism fishingMechanism = new FishingMechanism();
+            FishingMechanism fishingMechanism = new FishingMechanism(
+                fish.getSpeed()
+            );
             fishingMechanism.start();
             Thread.currentThread().sleep(fish.getTime());
             fishingMechanism.stop();

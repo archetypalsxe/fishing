@@ -45,4 +45,13 @@ public class SmokingFish extends AbstractFish {
     {
         return "SMOKING FISH";
     }
+
+    /**
+     * Returns the maximum speed that the fish can move. A 1 is the fastest
+     * possible, and 2 would be twice as slow
+     */
+    protected double getMaxSpeed()
+    {
+        return 4;
+    }
 }
