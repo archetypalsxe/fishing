@@ -5,6 +5,11 @@
 public class GameController
 {
     /**
+     * The interface controller for dealing with the interface
+     */
+    protected InterfaceController interfaceController;
+
+    /**
      * Represents the person playing the game
      */
     protected Player player;
@@ -22,12 +27,23 @@ public class GameController
      */
     protected void mainLoop()
     {
+        this.initializeInterface();
+
         FishFactory fishFactory = new FishFactory();
         while(true)
         {
             AbstractFish fish = fishFactory.generateFish(player.getLevel());
             fish(fish);
         }
+    }
+
+    /**
+     * Instatiate the interface and start displaying
+     */
+    protected void initializeInterface()
+    {
+        this.interfaceController = new InterfaceController();
+        this.interfaceController.displayFrame();
     }
 
     /**
