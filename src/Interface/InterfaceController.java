@@ -1,4 +1,5 @@
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 /**
  * Class for controlling the interface
@@ -58,14 +59,10 @@ public class InterfaceController
         this.display.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         this.display.setLayout(null);
         this.display.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
-        /**
-         * @TODO Will eventually want to include this
-        this.display.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        */
+        this.display.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         this.header = new Header();
         this.header.initialize(FRAME_WIDTH, HEADER_HEIGHT, 0, 0);
-        this.header.setBorder();
 
         this.playArea = new PlayArea();
         this.playArea.initialize(
@@ -74,7 +71,6 @@ public class InterfaceController
             HEADER_HEIGHT,
             0
         );
-        this.playArea.addButton();
 
         this.display.add(this.playArea);
         this.display.add(this.header);
