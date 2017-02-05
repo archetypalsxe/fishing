@@ -43,7 +43,8 @@ public class GameController
     protected void initializeInterface()
     {
         this.interfaceController = new InterfaceController();
-        this.interfaceController.displayFrame();
+        this.interfaceController.initializeFrame();
+        this.interfaceController.displayPlayerInfo(this.player);
     }
 
     /**
@@ -52,7 +53,7 @@ public class GameController
      */
     protected void fish(AbstractFish fish)
     {
-        System.out.println("Fishing...");
+        this.interfaceController.startFishing();
 
         try
         {

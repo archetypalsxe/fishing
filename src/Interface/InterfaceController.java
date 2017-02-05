@@ -44,10 +44,26 @@ public class InterfaceController
     /**
      * Setup and display the frame to the user
      */
-    public void displayFrame()
+    public void initializeFrame()
     {
         this.setupFrame();
         this.display.setVisible(true);
+    }
+
+    /**
+     * Display information on the player in the header
+     */
+    public void displayPlayerInfo(Player player)
+    {
+        this.header.updatePlayerInfo(player);
+    }
+
+    /**
+     * Notify the user that fishing has started
+     */
+    public void startFishing()
+    {
+        this.playArea.startFishing();
     }
 
     /**

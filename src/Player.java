@@ -31,7 +31,7 @@ public class Player
     {
         this.experience += experience;
         if(
-            this.experience >= (level * EXPERIENCE_PER_LEVEL) &&
+            this.experience >= this.getExperienceForNextLevel() &&
             level < MAX_LEVEL
         ) {
             level++;
@@ -46,5 +46,13 @@ public class Player
     public int getExperience()
     {
         return this.experience;
+    }
+
+    /**
+     * Returns the amount of experience next level will be at
+     */
+    public int getExperienceForNextLevel()
+    {
+        return this.getLevel() * EXPERIENCE_PER_LEVEL;
     }
 }
