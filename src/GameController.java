@@ -82,5 +82,7 @@ public class GameController
         );
         player.addExperience(fish.getExperience());
         System.out.println("New Experience: " + player.getExperience() + "\n");
+
+        this.interfaceController.displayPlayerInfo(this.player);
     }
 }
