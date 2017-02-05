@@ -1,7 +1,4 @@
-Scrap current interface, create in a JPanel
-    Display everything in the panel instead of console
-        Move everything over to console
-        Git rid of text output
+Repurpose fishing mechanism for new system
 Make interactive
     Make line that goes back and forth along the screen
         Create inner boundaries for when the key has to be pressed

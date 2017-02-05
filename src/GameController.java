@@ -57,32 +57,24 @@ public class GameController
 
         try
         {
+            /*
             FishingMechanism fishingMechanism = new FishingMechanism(
                 fish.getSpeed()
             );
             fishingMechanism.start();
+            */
             Thread.currentThread().sleep(fish.getTime());
-            fishingMechanism.stop();
+            //fishingMechanism.stop();
         }
         catch(InterruptedException ie)
         {
             System.out.println("An exception was thrown: "+ie+"\n");
         }
 
-        System.out.print("Caught a "+fish.getName()+"! ");
-
-        String direction;
-        if(fish.getExperience() >= 0) {
-            direction = "gained";
-        } else {
-            direction = "lost!!!";
+        this.interfaceController.caughtFish(fish);
+        if(player.addExperience(fish.getExperience())) {
+            this.interfaceController.displayLevelUp(player);
         }
-        System.out.println(
-            Math.abs(fish.getExperience()) + " experience " + direction
-        );
-        player.addExperience(fish.getExperience());
-        System.out.println("New Experience: " + player.getExperience() + "\n");
-
-        this.interfaceController.displayPlayerInfo(this.player);
+        this.interfaceController.displayPlayerInfo(player);
     }
 }

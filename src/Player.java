@@ -17,17 +17,11 @@ public class Player
     protected int level = 1;
 
     /**
-     * Returns the user's current level
-     */
-    public int getLevel()
-    {
-        return level;
-    }
-
-    /**
      * Add experience to the player. The amount of experience is passed in
+     *
+     * @return Whether or not the player has leveled up
      */
-    public void addExperience(int experience)
+    public boolean addExperience(int experience)
     {
         this.experience += experience;
         if(
@@ -35,11 +29,18 @@ public class Player
             level < MAX_LEVEL
         ) {
             level++;
-            System.out.println("\n*****You have leveled up*****");
-            System.out.println("Current level: " + level + "\n");
+            return true;
         }
+        return false;
     }
 
+    /**
+     * Returns the user's current level
+     */
+    public int getLevel()
+    {
+        return level;
+    }
     /**
      * Returns the player's current experience
      */

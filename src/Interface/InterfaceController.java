@@ -42,12 +42,19 @@ public class InterfaceController
     private static final int HEADER_HEIGHT = 80;
 
     /**
-     * Setup and display the frame to the user
+     * Display information that the user has caught a fish
      */
-    public void initializeFrame()
+    public void caughtFish(AbstractFish fish)
     {
-        this.setupFrame();
-        this.display.setVisible(true);
+        this.playArea.caughtFish(fish);
+    }
+
+    /**
+     * Display a message that the player has leveled up
+     */
+    public void displayLevelUp(Player player)
+    {
+        this.playArea.displayLevelUp(player);
     }
 
     /**
@@ -56,6 +63,15 @@ public class InterfaceController
     public void displayPlayerInfo(Player player)
     {
         this.header.updatePlayerInfo(player);
+    }
+
+    /**
+     * Setup and display the frame to the user
+     */
+    public void initializeFrame()
+    {
+        this.setupFrame();
+        this.display.setVisible(true);
     }
 
     /**

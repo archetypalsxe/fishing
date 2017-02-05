@@ -9,19 +9,35 @@ import javax.swing.JTextArea;
 public class PlayArea extends AbstractPanel
 {
     /**
-     * The height of the console
-     */
-    private static final int CONSOLE_HEIGHT = 30;
-
-    /**
-     * The width of the console
-     */
-    private static final int CONSOLE_WIDTH = 100;
-
-    /**
      * Where all the text will be displayed
      */
     protected JTextArea console;
+
+    /**
+     * Display relevant information that the user caught a fish
+     */
+    public void caughtFish(AbstractFish fish)
+    {
+        String direction;
+        if(fish.getExperience() >= 0) {
+            direction = "gained";
+        } else {
+            direction = "lost!!!";
+        }
+        this.prefixToConsole(
+            Math.abs(fish.getExperience()) +" experience "+ direction +"\n"
+        );
+        this.prefixToConsole("\nCaught a "+fish.getName()+ "! ");
+    }
+
+    /**
+     * Display a message that the player has leveled up
+     */
+    public void displayLevelUp(Player player)
+    {
+        this.prefixToConsole("You are now level "+ player.getLevel() +"\n");
+        this.prefixToConsole("\n************LEVEL UP!!!!************\n");
+    }
 
     /**
      * Initializes the panel and prepares for displaying
@@ -33,18 +49,30 @@ public class PlayArea extends AbstractPanel
         int startY
     ) {
         this.setPreferredSize(new Dimension(width, height));
-        this.console = new JTextArea(CONSOLE_HEIGHT, CONSOLE_WIDTH);
+        /**
+         * Takes in number of rows and number of columns
+         */
+        this.console = new JTextArea(height / 20, width / 13);
         this.console.setEditable(false);
 
         super.initialize(width, height, startX, startY);
     }
 
     /**
+     * Add text to the beginning of the console
+     */
+    protected void prefixToConsole(String verbiage)
+    {
+        this.console.setText(verbiage + this.console.getText());
+    }
+
+
+    /**
      * Display a message that we have started fishing
      */
     public void startFishing()
     {
-        this.console.setText("Fishing...\n"+ this.console.getText());
+        this.prefixToConsole("Fishing...\n");
         this.displayUpdates();
     }
 
