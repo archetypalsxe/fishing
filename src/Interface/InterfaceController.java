@@ -7,29 +7,14 @@ import javax.swing.WindowConstants;
 public class InterfaceController
 {
     /**
-     * The header to the frame
+     * The title that should appear on the frame
      */
-    protected Header header;
-
-    /**
-     * The frame to draw within
-     */
-    protected JFrame display;
-
-    /**
-     * The main part of the screen where all the magic happens
-     */
-    protected PlayArea playArea;
+    private static final String FRAME_TITLE = "The Fishing Game";
 
     /**
      * The length of the frame
      */
     private static final int FRAME_HEIGHT = 600;
-
-    /**
-     * The title that should appear on the frame
-     */
-    private static final String FRAME_TITLE = "The Fishing Game";
 
     /**
      * The width of the frame
@@ -42,11 +27,41 @@ public class InterfaceController
     private static final int HEADER_HEIGHT = 80;
 
     /**
+     * How tall the console is
+     */
+    private static final int CONSOLE_HEIGHT = 200;
+
+    /**
+     * How big (tall) the play area should be
+     */
+    private static final int PLAY_AREA_HEIGHT = 250;
+
+    /**
+     * The header to the frame
+     */
+    protected Header header;
+
+    /**
+     * The frame to draw within
+     */
+    protected JFrame display;
+
+    /**
+     * Where all the text for fishing take place
+     */
+    protected Console console;
+
+    /**
+     * The area where the graphics for fishing are
+     */
+    protected PlayArea playArea;
+
+    /**
      * Display information that the user has caught a fish
      */
     public void caughtFish(AbstractFish fish)
     {
-        this.playArea.caughtFish(fish);
+        this.console.caughtFish(fish);
     }
 
     /**
@@ -54,7 +69,7 @@ public class InterfaceController
      */
     public void displayLevelUp(Player player)
     {
-        this.playArea.displayLevelUp(player);
+        this.console.displayLevelUp(player);
     }
 
     /**
@@ -79,7 +94,14 @@ public class InterfaceController
      */
     public void startFishing()
     {
-        this.playArea.startFishing();
+        this.console.startFishing();
+            /*
+            FishingMechanism fishingMechanism = new FishingMechanism(
+                fish.getSpeed()
+            );
+            fishingMechanism.start();
+            */
+            //fishingMechanism.stop();
     }
 
     /**
@@ -96,15 +118,24 @@ public class InterfaceController
         this.header = new Header();
         this.header.initialize(FRAME_WIDTH, HEADER_HEIGHT, 0, 0);
 
-        this.playArea = new PlayArea();
-        this.playArea.initialize(
+        this.console = new Console();
+        this.console.initialize(
             FRAME_WIDTH,
-            FRAME_HEIGHT - HEADER_HEIGHT,
+            CONSOLE_HEIGHT,
             HEADER_HEIGHT,
             0
         );
 
+        this.playArea = new PlayArea();
+        this.playArea.initialize(
+            FRAME_WIDTH,
+            PLAY_AREA_HEIGHT,
+            HEADER_HEIGHT + CONSOLE_HEIGHT,
+            0
+        );
+
         this.display.add(this.playArea);
+        this.display.add(this.console);
         this.display.add(this.header);
         this.display.revalidate();
         this.display.repaint();
